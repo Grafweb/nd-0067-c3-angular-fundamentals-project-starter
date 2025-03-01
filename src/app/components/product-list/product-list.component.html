@@ -1,1 +1,8 @@
-<p>product-list works!</p>
+<div class="product-index" *ngIf="myBooks$ | async; let myBooks">
+  <div class="product-container" *ngFor="let book of myBooks">
+    <h2>{{ book.name }}</h2>
+    <img src="{{ book.url }}" />
+    <p>{{ book.description }}</p>
+    <p>{{ book.price }}</p>
+  </div>
+</div>
