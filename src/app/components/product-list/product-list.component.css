@@ -10,3 +10,8 @@
   display: flex;
   justify-content: center;
 }
+
+.book-card {
+  max-width: 400px;
+  margin-bottom: 8px;
+}

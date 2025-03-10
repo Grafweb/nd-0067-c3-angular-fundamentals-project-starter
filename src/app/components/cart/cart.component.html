@@ -1,1 +1,7 @@
-<p>cart works!</p>
+<mat-grid-list cols="2">
+  <mat-grid-tile>
+    cart {{ books() }}
+    @for (book of books(); track $index) {}
+  </mat-grid-tile>
+  <mat-grid-tile>Form</mat-grid-tile>
+</mat-grid-list>
