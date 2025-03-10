@@ -1,11 +1,12 @@
 import { Component, inject, WritableSignal } from '@angular/core';
 import { MatGridListModule } from '@angular/material/grid-list';
-import { BookCart, CartService } from '../../services/cart.service';
-import { toSignal } from '@angular/core/rxjs-interop';
+import { CartService } from '../../services/cart.service';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @Component({
   selector: 'app-cart',
-  imports: [MatGridListModule],
+  imports: [MatGridListModule, MatInputModule, MatFormFieldModule],
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.css',
 })

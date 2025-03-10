@@ -1,7 +1,30 @@
 <mat-grid-list cols="2">
   <mat-grid-tile>
     cart {{ books() }}
-    @for (book of books(); track $index) {}
+    <mat-grid-list cols="1">
+      @for (book of books(); track book.id) {
+      <mat-grid-tile>
+        <mat-grid-list cols="2">
+          <mat-grid-tile>
+            <img [src]="book.url" [alt]="book.name" />
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <h2>{{ book.name }}</h2>
+            <p>
+              <strong>{{ book.price }}</strong>
+            </p>
+            <form>
+              <mat-form-field>
+                <mat-label>Amount</mat-label>
+                <input type="number" matInput placeholder="1" />
+              </mat-form-field>
+            </form>
+          </mat-grid-tile>
+        </mat-grid-list>
+      </mat-grid-tile>
+      }
+      <mat-grid-tile> <strong>Total: </strong></mat-grid-tile>
+    </mat-grid-list>
   </mat-grid-tile>
   <mat-grid-tile>Form</mat-grid-tile>
 </mat-grid-list>
