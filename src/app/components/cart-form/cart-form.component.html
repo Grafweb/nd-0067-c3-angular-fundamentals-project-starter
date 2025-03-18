@@ -1,0 +1,68 @@
+<form (ngSubmit)="send()" #personalForm="ngForm">
+  <mat-form-field>
+    <mat-label>Full name</mat-label>
+    <input
+      matInput
+      [(ngModel)]="personalData.name"
+      name="name"
+      #name="ngModel"
+      minlength="3"
+      required
+      placeholder="Dariusz Sikorski"
+    />
+    <mat-hint>Errors appear instantly!</mat-hint>
+    @if (name.hasError('name') && !name.hasError('required')) {
+    <mat-error>Please enter a valid full name</mat-error>
+    } @if (name.hasError('required')) {
+    <mat-error>Name is <strong>required</strong></mat-error>
+    } @if (name.hasError('minlength')) {
+    <mat-error>Name is <strong>too short</strong></mat-error>
+    }
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Address</mat-label>
+    <input
+      type="text"
+      matInput
+      [(ngModel)]="personalData.address"
+      name="address"
+      #address="ngModel"
+      minlength="6"
+      required
+      placeholder="Dariusz Sikorski"
+    />
+    <mat-hint>Errors appear instantly!</mat-hint>
+    @if (address.hasError('address') && !address.hasError('required')) {
+    <mat-error>Please enter a valid full address</mat-error>
+    } @if (address.hasError('required')) {
+    <mat-error>address is <strong>required</strong></mat-error>
+    } @if (address.hasError('minlength')) {
+    <mat-error>address is <strong>too short</strong></mat-error>
+    }
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Credit card namuber</mat-label>
+    <input
+      type="text"
+      matInput
+      [(ngModel)]="personalData.credit"
+      name="credit"
+      #credit="ngModel"
+      minlength="16"
+      pattern="^[0-9]*$"
+      required
+      placeholder="Dariusz Sikorski"
+    />
+    <mat-hint>Errors appear instantly!</mat-hint>
+    @if (credit.hasError('credit') && !credit.hasError('required')) {
+    <mat-error>Please enter a valid full credit card number</mat-error>
+    } @if (credit.hasError('required')) {
+    <mat-error>Credit card number is <strong>required</strong></mat-error>
+    } @if (credit.hasError('minlength')) {
+    <mat-error>Credit card number is <strong>too short</strong></mat-error>
+    } @if (credit.hasError('pattern')) {
+    <mat-error>Credit card has only <strong>numbers</strong></mat-error>
+    }
+  </mat-form-field>
+  <button type="submit" mat-flat-button>Submit</button>
+</form>

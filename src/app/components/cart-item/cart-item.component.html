@@ -1,0 +1,23 @@
+<div class="cart-item">
+  <img [src]="book().url" [alt]="book().name" />
+  <div class="cart-item-details">
+    <h2>{{ book().name }}</h2>
+    <p>
+      <strong>{{ book().price }}</strong>
+    </p>
+    <form>
+      <mat-form-field>
+        <mat-label>Amount</mat-label>
+        <input
+          type="number"
+          matInput
+          [(ngModel)]="book().quantity"
+          (change)="quantityChange()"
+          name="quantity"
+          placeholder="1"
+        />
+      </mat-form-field>
+    </form>
+  </div>
+</div>
+{{ book() | json }}

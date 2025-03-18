@@ -13,9 +13,27 @@ export type BookCart = Book & Quantity;
 })
 export class CartService {
   books = signal<BookCart[]>([]);
-  constructor() {}
+  totalPrice = signal<number>(0);
 
-  addToCart(book: Book, quantity: number) {
-    this.books.update((books) => [...books, { ...book, quantity }]);
+  setTotalPrice(price: number) {
+    this.totalPrice.set(price);
+  }
+
+  addToCart(book: Book | BookCart, quantity: number) {
+    this.books.update(function (books) {
+      const exist_book = books.find((item) => item.id === book.id);
+      if (exist_book) {
+        return books.map(function (item) {
+          if (item.id === book.id) {
+            item.quantity = quantity;
+            return item;
+          } else {
+            return item;
+          }
+        });
+      } else {
+        return [...books, { ...book, quantity }];
+      }
+    });
   }
 }
