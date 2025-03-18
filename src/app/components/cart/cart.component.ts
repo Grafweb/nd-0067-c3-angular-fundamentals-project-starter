@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, effect, inject } from '@angular/core';
+import { Component, effect, inject, OnInit } from '@angular/core';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { BookCart, CartService } from '../../services/cart.service';
 import { CartItemComponent } from '../cart-item/cart-item.component';
@@ -16,7 +16,7 @@ import { CartFormComponent } from '../cart-form/cart-form.component';
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.css',
 })
-export class CartComponent {
+export class CartComponent implements OnInit {
   private _cartService = inject(CartService);
   books = this._cartService.books;
   // price: number = this.books().reduce((p, c) => p + c.price * c.quantity, 0);
@@ -26,6 +26,10 @@ export class CartComponent {
     effect(() => {
       this.price;
     });
+  }
+
+  ngOnInit(): void {
+    this._cartService.setTotalPrice(this.price);
   }
 
   get price(): number {
