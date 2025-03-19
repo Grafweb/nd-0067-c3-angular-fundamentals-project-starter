@@ -36,4 +36,8 @@ export class CartService {
       }
     });
   }
+
+  cleanCart() {
+    this.books.set([]);
+  }
 }

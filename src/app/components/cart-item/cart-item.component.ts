@@ -5,12 +5,14 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { MatCardModule } from '@angular/material/card';
 
 @Component({
   selector: 'app-cart-item',
   imports: [
     CommonModule,
     FormsModule,
+    MatCardModule,
     MatInputModule,
     MatFormFieldModule,
     MatGridListModule,
@@ -21,11 +23,8 @@ import { CommonModule } from '@angular/common';
 export class CartItemComponent {
   book = input.required<BookCart>();
   bookChange = output<BookCart>();
-  private _cartService = inject(CartService);
 
   quantityChange(): void {
-    console.log('cart parent');
     this.bookChange.emit(this.book());
-    //this._cartService.addToCart(book, book.quantity);
   }
 }

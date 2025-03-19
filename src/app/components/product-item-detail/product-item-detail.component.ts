@@ -41,17 +41,6 @@ export class ProductItemDetailComponent {
   private _snackBar = inject(MatSnackBar);
 
   getBook(): Observable<Book | undefined> {
-    // getProduct(id: number): Observable<Book | undefined> {
-    //   return this.getProducts().pipe(
-    //     tap((books) => {
-    //       console.log(books);
-    //     }),
-    //     map((books) => books[0]),
-    //     catchError((err) => {
-    //       throw err;
-    //     })
-    //   );
-    // }
     return this._productService.myBooks$.pipe(
       map((books) => books.find((book) => book.id === this.bookId))
     );

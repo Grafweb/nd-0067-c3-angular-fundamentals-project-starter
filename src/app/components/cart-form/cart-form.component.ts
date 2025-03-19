@@ -4,7 +4,7 @@ import { Component, inject } from '@angular/core';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { ConfirmationService } from '../../services/confirmation.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 export class PersonalData {
   name: string = '';
@@ -30,8 +30,6 @@ export class CartFormComponent {
   private router = inject(Router);
 
   send() {
-    console.log('send');
-    console.log(this.personalData);
     this._confirmationService.setData(this.personalData);
     this.router.navigate(['/confirmation']); //, { relativeTo: this.route }
   }

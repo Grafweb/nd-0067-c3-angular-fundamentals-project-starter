@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { ConfirmationService } from '../../services/confirmation.service';
 import { MatCardModule } from '@angular/material/card';
 import { CartService } from '../../services/cart.service';
@@ -11,7 +11,7 @@ import { MatButtonModule } from '@angular/material/button';
   templateUrl: './confirmation.component.html',
   styleUrl: './confirmation.component.css',
 })
-export class ConfirmationComponent {
+export class ConfirmationComponent implements OnDestroy {
   private _confirmationService = inject(ConfirmationService);
   private _cartService = inject(CartService);
 
@@ -21,5 +21,9 @@ export class ConfirmationComponent {
 
   get totalPrice() {
     return this._cartService.totalPrice;
+  }
+
+  ngOnDestroy(): void {
+    this._cartService.cleanCart();
   }
 }
