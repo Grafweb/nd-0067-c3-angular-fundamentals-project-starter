@@ -15,15 +15,17 @@ export class ConfirmationComponent implements OnDestroy {
   private _confirmationService = inject(ConfirmationService);
   private _cartService = inject(CartService);
 
+  //get cofirmation data like order
   get confirmationData() {
     return this._confirmationService.data;
   }
-
+  //get total price
   get totalPrice() {
     return this._cartService.totalPrice;
   }
 
   ngOnDestroy(): void {
+    //clean cart
     this._cartService.cleanCart();
   }
 }

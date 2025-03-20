@@ -5,6 +5,7 @@ import { ProductItemDetailComponent } from './components/product-item-detail/pro
 import { ConfirmationComponent } from './components/confirmation/confirmation.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
+//define all routes
 export const routes: Routes = [
   { path: 'product-list/:id', component: ProductItemDetailComponent },
   { path: 'product-list', component: ProductListComponent },

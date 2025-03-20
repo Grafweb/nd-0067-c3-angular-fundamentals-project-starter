@@ -27,12 +27,14 @@ import { ProductItemComponent } from '../product-item/product-item.component';
   styleUrl: './product-list.component.css',
 })
 export class ProductListComponent {
+  //inject service
   private readonly _productService = inject(ProductService);
   myBooks$: Observable<Book[]> = this._productService.myBooks$;
 
   constructor() {}
 
   ngOnInit() {
+    //get all books
     this._productService.getProducts();
   }
 }

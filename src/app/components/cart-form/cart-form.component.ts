@@ -26,11 +26,13 @@ export class PersonalData {
 })
 export class CartFormComponent {
   personalData: PersonalData = new PersonalData('', '', '');
+  //inject service
   private _confirmationService = inject(ConfirmationService);
   private router = inject(Router);
 
+  //save form stateang nawigation to confirmation page
   send() {
     this._confirmationService.setData(this.personalData);
-    this.router.navigate(['/confirmation']); //, { relativeTo: this.route }
+    this.router.navigate(['/confirmation']);
   }
 }

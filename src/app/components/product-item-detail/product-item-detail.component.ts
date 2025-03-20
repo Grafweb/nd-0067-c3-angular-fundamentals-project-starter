@@ -30,34 +30,37 @@ import { CartService } from '../../services/cart.service';
 export class ProductItemDetailComponent {
   private readonly routeActive = inject(ActivatedRoute);
   private readonly router = inject(Router);
+  //inject service
   private readonly _productService = inject(ProductService);
   private _cartService = inject(CartService);
   bookId: number = 1;
-  // books: Book[] = [] as Book[];
   book: Book = {} as Book;
   readonly quantityRange: Array<number> = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   readonly message: string = 'Added to cart!';
   quantity: number = 1;
   private _snackBar = inject(MatSnackBar);
 
+  //this method gets one book
   getBook(): Observable<Book | undefined> {
     return this._productService.myBooks$.pipe(
       map((books) => books.find((book) => book.id === this.bookId))
     );
   }
-
+  //this method add to cart
   addToCart(book: Book, quantity: number): void {
     this._snackBar.open(this.message, undefined, { duration: 2000 });
     this._cartService.addToCart(book, quantity);
   }
 
   ngOnInit() {
+    //get id book
     const id: string | null = this.routeActive.snapshot.paramMap.get('id');
     if (id === null) {
       this.router.navigate(['product-list']);
     } else {
       this.bookId = parseInt(id);
     }
+    //get all books
     this._productService.getProducts();
   }
 }

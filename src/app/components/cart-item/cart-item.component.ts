@@ -21,9 +21,11 @@ import { MatCardModule } from '@angular/material/card';
   styleUrl: './cart-item.component.css',
 })
 export class CartItemComponent {
+  //get book with qantity
   book = input.required<BookCart>();
   bookChange = output<BookCart>();
 
+  //emit event change quantity
   quantityChange(): void {
     this.bookChange.emit(this.book());
   }
