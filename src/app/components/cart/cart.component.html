@@ -1,16 +1,14 @@
 <mat-grid-list cols="3">
   <mat-grid-tile>
-    <div class="cart-item-list">
-      @for (book of books(); track book.id) {
-      <app-cart-item
-        [book]="book"
-        (bookChange)="quantityChange(book)"
-      ></app-cart-item>
-      }
-    </div>
+    @for (book of books(); track book.id) {
+    <app-cart-item
+      [book]="book"
+      (bookChange)="quantityChange(book)"
+    ></app-cart-item>
+    }
   </mat-grid-tile>
   <mat-grid-tile>
-    <strong>Total: {{ price }} </strong>
+    <strong>Total: {{ price | currency }} </strong>
   </mat-grid-tile>
   <mat-grid-tile>
     <app-cart-form></app-cart-form>

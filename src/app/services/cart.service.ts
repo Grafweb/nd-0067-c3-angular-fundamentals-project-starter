@@ -37,6 +37,18 @@ export class CartService {
     });
   }
 
+  removeFromCart(book: BookCart) {
+    this.books.update(function (books) {
+      const bookIndex = books.findIndex((item) => item.id === book.id);
+      if (bookIndex != -1) {
+        books.splice(bookIndex, 1);
+        return books;
+      } else {
+        return books;
+      }
+    });
+  }
+
   cleanCart() {
     this.books.set([]);
   }
