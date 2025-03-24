@@ -1,5 +1,13 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject, input, output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  inject,
+  Input,
+  input,
+  Output,
+  output,
+} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -25,18 +33,18 @@ import { BookCart, CartService } from '../../services/cart.service';
   styleUrl: './cart-item.component.css',
 })
 export class CartItemComponent {
-  //get book with qantity
   //inject service
   private _cartService = inject(CartService);
-  book = input.required<BookCart>();
-  bookChange = output<BookCart>();
+  @Input({ required: true }) book: BookCart = {} as BookCart;
+  @Output() bookChange = new EventEmitter<BookCart>();
 
   //emit event change quantity
   quantityChange(): void {
-    this.bookChange.emit(this.book());
+    this.bookChange.emit(this.book);
   }
 
+  //remove everything form Cart
   removeFromCart() {
-    return this._cartService.removeFromCart(this.book());
+    return this._cartService.removeFromCart(this.book);
   }
 }

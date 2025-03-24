@@ -1,12 +1,12 @@
 <mat-card appearance="outlined">
   <mat-card-header>
-    <mat-card-title>{{ book().name }}</mat-card-title>
+    <mat-card-title>{{ book.name }}</mat-card-title>
   </mat-card-header>
   <mat-card-content>
-    <img mat-card-sm-image [src]="book().url" [alt]="book().name" />
+    <img mat-card-sm-image [src]="book.url" [alt]="book.name" />
   </mat-card-content>
   <mat-card-content>
-    {{ book().price | currency }}
+    {{ book.price | currency }}
   </mat-card-content>
   <mat-card-content>
     <form>
@@ -15,7 +15,7 @@
         <input
           type="number"
           matInput
-          [(ngModel)]="book().quantity"
+          [(ngModel)]="book.quantity"
           (ngModelChange)="quantityChange()"
           name="quantity"
           min="1"
