@@ -64,5 +64,7 @@
     <mat-error>Credit card has only <strong>numbers</strong></mat-error>
     }
   </mat-form-field>
-  <button type="submit" mat-flat-button>Submit</button>
+  <button type="submit" [disabled]="personalForm.invalid" mat-flat-button>
+    Submit
+  </button>
 </form>
