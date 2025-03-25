@@ -16,6 +16,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { BookCart, CartService } from '../../services/cart.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-cart-item',
@@ -35,9 +36,10 @@ import { BookCart, CartService } from '../../services/cart.service';
 export class CartItemComponent {
   //inject service
   private _cartService = inject(CartService);
+  private _snackBar = inject(MatSnackBar);
   @Input({ required: true }) book: BookCart = {} as BookCart;
   @Output() bookChange = new EventEmitter<BookCart>();
-
+  readonly message: string = 'Removed from cart!';
   //emit event change quantity
   quantityChange(): void {
     this.bookChange.emit(this.book);
@@ -45,6 +47,7 @@ export class CartItemComponent {
 
   //remove everything form Cart
   removeFromCart() {
+    this._snackBar.open(this.message, undefined, { duration: 2000 });
     return this._cartService.removeFromCart(this.book);
   }
 }
